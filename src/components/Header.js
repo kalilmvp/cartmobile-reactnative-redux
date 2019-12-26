@@ -3,9 +3,11 @@ import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Main, Container, Logo, BasketCart, CartSize } from './styles';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-function Header({ navigation, cartSize }) {
+export default function Header({ navigation }) {
+  const cartSize = useSelector(state => state.cart.length);
+
   return (
     <Main>
       <Container>
@@ -20,9 +22,3 @@ function Header({ navigation, cartSize }) {
     </Main>
   );
 }
-
-const mapStateToProps = state => ({
-  cartSize: state.cart.length,
-});
-
-export default connect(mapStateToProps, null)(Header);
